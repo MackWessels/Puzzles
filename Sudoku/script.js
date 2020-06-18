@@ -11,7 +11,7 @@ var board = [
    
 var active = "";
 var key = [];
-//a
+
 function startGame() {
     document.getElementById("solution").innerHTML = "";
     for (var j = 0; j < 9; j++)
