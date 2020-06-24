@@ -24,3 +24,9 @@ table button{
     width: 40px;
     height: 40px;
 }
+
+img {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
