@@ -1,17 +1,162 @@
 var board = [
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]]
+        [7, 8, 0, 4, 0, 0, 1, 2, 0, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [6, 0, 0, 0, 7, 5, 0, 0, 9, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [0, 0, 0, 6, 0, 1, 0, 7, 8, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [0, 0, 7, 0, 4, 0, 2, 6, 0, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [0, 0, 1, 0, 5, 0, 9, 3, 0, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [9, 0, 4, 0, 6, 0, 0, 0, 5, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [0, 7, 0, 3, 0, 0, 0, 1, 2, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [1, 2, 0, 0, 0, 7, 4, 0, 0, 7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [0, 4, 9, 2, 0, 6, 0, 0, 7, 7, 8, 0, 4, 0, 0, 1, 2, 0]]
    
 var active = "";
 var key = [];
-//a
+var game = "";
+
+function sudoku(){
+    console.log("sudoku mode")
+    $(".minesweeper").hide()
+    $(".sudoku").show()
+    genRandomBoard()
+    game = "sudoku";
+}
+function minesweeper(){
+    console.log("minesweeper mode")
+    $(".minesweeper").show()
+    $(".sudoku").hide()
+    game = "minesweeper";
+    readyMinesweeper()
+    plantBombs()
+    setHints()
+    print_board()
+    document.getElementById("numberPad").style.display = "none";
+    for (var j = 0; j < 9; j++)
+        for (var i = 0; i < 18; i++)
+            document.getElementById("img["+j+"]["+i+"]").style.display = "none";              
+    while(key.length > 0)
+        key.pop()
+}
+
+
+function readyMinesweeper(){
+    document.getElementById("solution").innerHTML = "";
+    for (var j = 0; j < 9; j++)
+        for (var i = 0; i < 18; i++){
+            board[j][i] = 0
+            document.getElementById("["+j+"]["+i+"]").style.display = "none";
+            document.getElementById("btn["+j+"]["+i+"]").style.display = "block";  
+            document.getElementById("btn["+j+"]["+i+"]").innerHTML = "";            
+        }
+}
+
+function plantBombs(){
+    console.log("bombs have been planted")
+    var bombs = []
+    while(bombs.length > 0)
+        bombs.pop()
+    while (bombs.length < 30 ){
+        var row = Math.floor(Math.random() * 9)
+        var col = Math.floor(Math.random() * 18);
+        if (board[row][col] != "bomb"){
+            board[row][col] = "bomb";
+            bombs.push(row+""+col)
+        }
+    }
+}
+
+function setHints(){
+    for (var j = 0; j < 9; j++)
+        for (var i = 0; i < 18; i++)
+            if(board[j][i] == "bomb"){
+                //top, top-left, top-right, left, right, bottom, bottom-left, bottom-right
+                if(j != 0 && board[j-1][i] != "bomb")
+                    board[j-1][i]++;
+                if(j != 0 && i != 0 && board[j-1][i-1] != "bomb")
+                    board[j-1][i-1]++;
+                if(j != 0 && i != 18 && board[j-1][i+1] != "bomb")
+                    board[j-1][i+1]++;
+                if(i != 0 && board[j][i-1] != "bomb")
+                    board[j][i-1]++;
+                if(i != 18 && board[j][i+1] != "bomb")
+                    board[j][i+1]++;
+                if(j != 8 && board[j+1][i] != "bomb")
+                    board[j+1][i]++;
+                if(j != 8 && i != 0 && board[j+1][i-1] != "bomb")
+                    board[j+1][i-1]++;
+                if(j != 8 && i != 18 && board[j+1][i+1] != "bomb")
+                    board[j+1][i+1]++;
+            }
+}
+
+function probeMinefeild(pos){
+    var row = pos.charAt(4)
+    var col = pos.charAt(7)
+    if(pos.length > 9)
+        col += pos.charAt(8)
+    key.push(row+""+col)
+    document.getElementById("btn["+row+"]["+col+"]").style.display = "none";
+    document.getElementById("["+row+"]["+col+"]").style.display = "block";
+    
+    if (board[row][col] == 0){
+        board[row][col] = "clear"
+        if(row != 0)
+            probeMinefeild("btn["+(parseInt(row)-1)+"]["+col+"]");
+        if(row != 0 && col != 0)
+            probeMinefeild("btn["+(parseInt(row)-1)+"]["+(parseInt(col)-1)+"]");
+        if(row != 0 && col < 17)
+            probeMinefeild("btn["+(parseInt(row)-1)+"]["+(parseInt(col)+1)+"]")
+        if(col != 0)
+            probeMinefeild("btn["+row+"]["+(parseInt(col)-1)+"]")
+        if(col < 17)
+            probeMinefeild("btn["+row+"]["+(parseInt(col)+1)+"]")
+        if(row != 8)
+            probeMinefeild("btn["+(parseInt(row)+1)+"]["+col+"]")
+        if(row != 8 && col != 0 )
+            probeMinefeild("btn["+(parseInt(row)+1)+"]["+(parseInt(col)-1)+"]")
+        if(row != 8 && col < 17 )
+            probeMinefeild("btn["+(parseInt(row)+1)+"]["+(parseInt(col)+1)+"]")
+    }
+    if(board[row][col] == "bomb")
+        handleBomb()
+    checkWin()
+    
+}
+
+function handleBomb(){
+    document.getElementById("solution").innerHTML = "<h1>You Lose</h1>";
+    for (var j = 0; j < 9; j++)
+        for (var i = 0; i < 18; i++){
+            document.getElementById("["+j+"]["+i+"]").style.display = "block";
+            document.getElementById("btn["+j+"]["+i+"]").style.display = "none";
+            if (board[j][i] == "bomb"){
+                document.getElementById("img["+j+"]["+i+"]").style.display = "block"; 
+                document.getElementById("["+j+"]["+i+"]").style.display = "none";
+            }
+                
+            
+                          
+        }
+}
+function flag(event, pos){
+   
+    if (event.which == 3 && game == "minesweeper")
+        if (document.getElementById(pos).innerHTML.indexOf(String.fromCharCode(9888)) == -1)
+            document.getElementById(pos).innerHTML = String.fromCharCode(9888);
+        else
+            document.getElementById(pos).innerHTML = "";
+    
+}
+
+
+
+function checkWin(){
+    for (var j = 0; j < 9; j++)
+        for (var i = 0; i < 18; i++)
+            if(!key.includes(j+""+i) && board[j][i] != "bomb")
+                return false
+    document.getElementById("solution").innerHTML = "<h1>You Win</h1>";
+}
+
 function startGame() {
     document.getElementById("solution").innerHTML = "";
     for (var j = 0; j < 9; j++)
@@ -157,7 +302,7 @@ function genRandomBoard(){
         if (!firstLine.includes(num))
             firstLine.push(num)
     }
-    console.log("generating")
+    console.log("generating sudoku")
     for (var i = 0; i < 9; i++)
         board[0][i]= firstLine.pop()
     for (var i = 0; i < 3; i++)
@@ -218,9 +363,13 @@ function genRandomBoard(){
     startGame()
 }
 
-function readyPad(position){
-    active = position.charAt(4)+""+position.charAt(7);
-    document.getElementById("numberPad").style.display = "block";
+function readyPad(pos){
+    if(game == "sudoku"){
+        active = pos.charAt(4)+""+pos.charAt(7);
+        document.getElementById("numberPad").style.display = "block";
+    }else{
+        probeMinefeild(pos)        
+    }
 }
 
 function assign(num){
@@ -233,7 +382,7 @@ function assign(num){
 
 function print_board(){
     for (var j = 0; j < 9; j++)
-        for (var i = 0; i < 9; i++)
+        for (var i = 0; i < 18; i++)
             if (board[j][i] == 0)
                 document.getElementById("["+j+"]["+i+"]").innerHTML = "";
             else

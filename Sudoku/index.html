@@ -6,127 +6,211 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <title>Sudoku</title>
 </head>
 
-<body onload="genRandomBoard()">
-<div id = "sudoku">
+<body onload="sudoku()" oncontextmenu="return false;">
+    <button onclick="sudoku()">Sudoku</button> 
+      <button onclick="minesweeper()">Minesweeper</button> 
 <table>
-  <caption>Sudoku</caption>
-    <colgroup><col><col><col></colgroup>
-    <colgroup><col><col><col></colgroup>
-    <colgroup><col><col><col></colgroup>
-    <tbody></tbody>
-<tr><td><button id="btn[0][0]" onclick="readyPad(id)"></button><span id="[0][0]"></span></td>
-    <td><button id="btn[0][1]" onclick="readyPad(id)"></button><span id="[0][1]"></span></td>
-    <td><button id="btn[0][2]" onclick="readyPad(id)"></button><span id="[0][2]"></span></td>
-    <td><button id="btn[0][3]" onclick="readyPad(id)"></button><span id="[0][3]"></span></td>
-    <td><button id="btn[0][4]" onclick="readyPad(id)"></button><span id="[0][4]"></span></td>
-    <td><button id="btn[0][5]" onclick="readyPad(id)"></button><span id="[0][5]"></span></td>
-    <td><button id="btn[0][6]" onclick="readyPad(id)"></button><span id="[0][6]"></span></td>
-    <td><button id="btn[0][7]" onclick="readyPad(id)"></button><span id="[0][7]"></span></td>
-    <td><button id="btn[0][8]" onclick="readyPad(id)"></button><span id="[0][8]"></span></td></tr>
+  <caption class ="sudoku">Sudoku</caption>
+  <caption class="minesweeper">Minesweeper</caption>
+    <colgroup class ="sudoku"><col><col><col></colgroup>
+    <colgroup class ="sudoku"><col><col><col></colgroup>
+    <colgroup class ="sudoku"><col><col><col></colgroup>
+    <tbody class ="sudoku"></tbody>
+<tr><td><button id="btn[0][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][0]"><span id="[0][0]"></span></td>
+    <td><button id="btn[0][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][1]"><span id="[0][1]"></span></td>
+    <td><button id="btn[0][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][2]"><span id="[0][2]"></span></td>
+    <td><button id="btn[0][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][3]"><span id="[0][3]"></span></td>
+    <td><button id="btn[0][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][4]"><span id="[0][4]"></span></td>
+    <td><button id="btn[0][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][5]"><span id="[0][5]"></span></td>
+    <td><button id="btn[0][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][6]"><span id="[0][6]"></span></td>
+    <td><button id="btn[0][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][7]"><span id="[0][7]"></span></td>
+    <td><button id="btn[0][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][8]"><span id="[0][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][9]"><span id="[0][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][10]"><span id="[0][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][11]"><span id="[0][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][12]"><span id="[0][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][13]"><span id="[0][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][14]"><span id="[0][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][15]"><span id="[0][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][16]"><span id="[0][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[0][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[0][17]"><span id="[0][17]"></span></td></tr>
        
-<tr><td><button id="btn[1][0]" onclick="readyPad(id)"></button><span id="[1][0]"></span></td>
-    <td><button id="btn[1][1]" onclick="readyPad(id)"></button><span id="[1][1]"></span></td>
-    <td><button id="btn[1][2]" onclick="readyPad(id)"></button><span id="[1][2]"></span></td>
-    <td><button id="btn[1][3]" onclick="readyPad(id)"></button><span id="[1][3]"></span></td>
-    <td><button id="btn[1][4]" onclick="readyPad(id)"></button><span id="[1][4]"></span></td>
-    <td><button id="btn[1][5]" onclick="readyPad(id)"></button><span id="[1][5]"></span></td>
-    <td><button id="btn[1][6]" onclick="readyPad(id)"></button><span id="[1][6]"></span></td>
-    <td><button id="btn[1][7]" onclick="readyPad(id)"></button><span id="[1][7]"></span></td>
-    <td><button id="btn[1][8]" onclick="readyPad(id)"></button><span id="[1][8]"></span></td></tr>
+<tr><td><button id="btn[1][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][0]"><span id="[1][0]"></span></td>
+    <td><button id="btn[1][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][1]"><span id="[1][1]"></span></td>
+    <td><button id="btn[1][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][2]"><span id="[1][2]"></span></td>
+    <td><button id="btn[1][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][3]"><span id="[1][3]"></span></td>
+    <td><button id="btn[1][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][4]"><span id="[1][4]"></span></td>
+    <td><button id="btn[1][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][5]"><span id="[1][5]"></span></td>
+    <td><button id="btn[1][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][6]"><span id="[1][6]"></span></td>
+    <td><button id="btn[1][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][7]"><span id="[1][7]"></span></td>
+    <td><button id="btn[1][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][8]"><span id="[1][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][9]"><span id="[1][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][10]"><span id="[1][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][11]"><span id="[1][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][12]"><span id="[1][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][13]"><span id="[1][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][14]"><span id="[1][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][15]"><span id="[1][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][16]"><span id="[1][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[1][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[1][17]"><span id="[1][17]"></span></td></tr>
           
-<tr><td><button id="btn[2][0]" onclick="readyPad(id)"></button><span id="[2][0]"></span></td>
-    <td><button id="btn[2][1]" onclick="readyPad(id)"></button><span id="[2][1]"></span></td>
-    <td><button id="btn[2][2]" onclick="readyPad(id)"></button><span id="[2][2]"></span></td>
-    <td><button id="btn[2][3]" onclick="readyPad(id)"></button><span id="[2][3]"></span></td>
-    <td><button id="btn[2][4]" onclick="readyPad(id)"></button><span id="[2][4]"></span></td>
-    <td><button id="btn[2][5]" onclick="readyPad(id)"></button><span id="[2][5]"></span></td>
-    <td><button id="btn[2][6]" onclick="readyPad(id)"></button><span id="[2][6]"></span></td>
-    <td><button id="btn[2][7]" onclick="readyPad(id)"></button><span id="[2][7]"></span></td>
-    <td><button id="btn[2][8]" onclick="readyPad(id)"></button><span id="[2][8]"></span></td></tr>
+<tr><td><button id="btn[2][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][0]"><span id="[2][0]"></span></td>
+    <td><button id="btn[2][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][1]"><span id="[2][1]"></span></td>
+    <td><button id="btn[2][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][2]"><span id="[2][2]"></span></td>
+    <td><button id="btn[2][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][3]"><span id="[2][3]"></span></td>
+    <td><button id="btn[2][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][4]"><span id="[2][4]"></span></td>
+    <td><button id="btn[2][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][5]"><span id="[2][5]"></span></td>
+    <td><button id="btn[2][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][6]"><span id="[2][6]"></span></td>
+    <td><button id="btn[2][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][7]"><span id="[2][7]"></span></td>
+    <td><button id="btn[2][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][8]"><span id="[2][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][9]"><span id="[2][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][10]"><span id="[2][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][11]"><span id="[2][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][12]"><span id="[2][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][13]"><span id="[2][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][14]"><span id="[2][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][15]"><span id="[2][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][16]"><span id="[2][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[2][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[2][17]"><span id="[2][17]"></span></td></tr>
     
-    <tbody></tbody>
-<tr><td><button id="btn[3][0]" onclick="readyPad(id)"></button><span id="[3][0]"></span></td>
-    <td><button id="btn[3][1]" onclick="readyPad(id)"></button><span id="[3][1]"></span></td>
-    <td><button id="btn[3][2]" onclick="readyPad(id)"></button><span id="[3][2]"></span></td>
-    <td><button id="btn[3][3]" onclick="readyPad(id)"></button><span id="[3][3]"></span></td>
-    <td><button id="btn[3][4]" onclick="readyPad(id)"></button><span id="[3][4]"></span></td>
-    <td><button id="btn[3][5]" onclick="readyPad(id)"></button><span id="[3][5]"></span></td>
-    <td><button id="btn[3][6]" onclick="readyPad(id)"></button><span id="[3][6]"></span></td>
-    <td><button id="btn[3][7]" onclick="readyPad(id)"></button><span id="[3][7]"></span></td>
-    <td><button id="btn[3][8]" onclick="readyPad(id)"></button><span id="[3][8]"></span></td></tr>
+    <tbody class ="sudoku"></tbody>
+<tr><td><button id="btn[3][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][0]"><span id="[3][0]"></span></td>
+    <td><button id="btn[3][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][1]"><span id="[3][1]"></span></td>
+    <td><button id="btn[3][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][2]"><span id="[3][2]"></span></td>
+    <td><button id="btn[3][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][3]"><span id="[3][3]"></span></td>
+    <td><button id="btn[3][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][4]"><span id="[3][4]"></span></td>
+    <td><button id="btn[3][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][5]"><span id="[3][5]"></span></td>
+    <td><button id="btn[3][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][6]"><span id="[3][6]"></span></td>
+    <td><button id="btn[3][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][7]"><span id="[3][7]"></span></td>
+    <td><button id="btn[3][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][8]"><span id="[3][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][9]"><span id="[3][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][10]"><span id="[3][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][11]"><span id="[3][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][12]"><span id="[3][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][13]"><span id="[3][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][14]"><span id="[3][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][15]"><span id="[3][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][16]"><span id="[3][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[3][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[3][17]"><span id="[3][17]"></span></td></tr>
                
-<tr><td><button id="btn[4][0]" onclick="readyPad(id)"></button><span id="[4][0]"></span></td>
-    <td><button id="btn[4][1]" onclick="readyPad(id)"></button><span id="[4][1]"></span></td>
-    <td><button id="btn[4][2]" onclick="readyPad(id)"></button><span id="[4][2]"></span></td>
-    <td><button id="btn[4][3]" onclick="readyPad(id)"></button><span id="[4][3]"></span></td>
-    <td><button id="btn[4][4]" onclick="readyPad(id)"></button><span id="[4][4]"></span></td>
-    <td><button id="btn[4][5]" onclick="readyPad(id)"></button><span id="[4][5]"></span></td>
-    <td><button id="btn[4][6]" onclick="readyPad(id)"></button><span id="[4][6]"></span></td>
-    <td><button id="btn[4][7]" onclick="readyPad(id)"></button><span id="[4][7]"></span></td>
-    <td><button id="btn[4][8]" onclick="readyPad(id)"></button><span id="[4][8]"></span></td></tr>
+<tr><td><button id="btn[4][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][0]"><span id="[4][0]"></span></td>
+    <td><button id="btn[4][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][1]"><span id="[4][1]"></span></td>
+    <td><button id="btn[4][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][2]"><span id="[4][2]"></span></td>
+    <td><button id="btn[4][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][3]"><span id="[4][3]"></span></td>
+    <td><button id="btn[4][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][4]"><span id="[4][4]"></span></td>
+    <td><button id="btn[4][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][5]"><span id="[4][5]"></span></td>
+    <td><button id="btn[4][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][6]"><span id="[4][6]"></span></td>
+    <td><button id="btn[4][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][7]"><span id="[4][7]"></span></td>
+    <td><button id="btn[4][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][8]"><span id="[4][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][9]"><span id="[4][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][10]"><span id="[4][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][11]"><span id="[4][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][12]"><span id="[4][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][13]"><span id="[4][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][14]"><span id="[4][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][15]"><span id="[4][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][16]"><span id="[4][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[4][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[4][17]"><span id="[4][17]"></span></td></tr>
 
-<tr><td><button id="btn[5][0]" onclick="readyPad(id)"></button><span id="[5][0]"></span></td>
-    <td><button id="btn[5][1]" onclick="readyPad(id)"></button><span id="[5][1]"></span></td>
-    <td><button id="btn[5][2]" onclick="readyPad(id)"></button><span id="[5][2]"></span></td>
-    <td><button id="btn[5][3]" onclick="readyPad(id)"></button><span id="[5][3]"></span></td>
-    <td><button id="btn[5][4]" onclick="readyPad(id)"></button><span id="[5][4]"></span></td>
-    <td><button id="btn[5][5]" onclick="readyPad(id)"></button><span id="[5][5]"></span></td>
-    <td><button id="btn[5][6]" onclick="readyPad(id)"></button><span id="[5][6]"></span></td>
-    <td><button id="btn[5][7]" onclick="readyPad(id)"></button><span id="[5][7]"></span></td>
-    <td><button id="btn[5][8]" onclick="readyPad(id)"></button><span id="[5][8]"></span></td></tr>
+<tr><td><button id="btn[5][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][0]"><span id="[5][0]"></span></td>
+    <td><button id="btn[5][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][1]"><span id="[5][1]"></span></td>
+    <td><button id="btn[5][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][2]"><span id="[5][2]"></span></td>
+    <td><button id="btn[5][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][3]"><span id="[5][3]"></span></td>
+    <td><button id="btn[5][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][4]"><span id="[5][4]"></span></td>
+    <td><button id="btn[5][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][5]"><span id="[5][5]"></span></td>
+    <td><button id="btn[5][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][6]"><span id="[5][6]"></span></td>
+    <td><button id="btn[5][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][7]"><span id="[5][7]"></span></td>
+    <td><button id="btn[5][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][8]"><span id="[5][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][9]"><span id="[5][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][10]"><span id="[5][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][11]"><span id="[5][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][12]"><span id="[5][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][13]"><span id="[5][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][14]"><span id="[5][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][15]"><span id="[5][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][16]"><span id="[5][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[5][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[5][17]"><span id="[5][17]"></span></td></tr>
         
-    <tbody></tbody>
-<tr><td><button id="btn[6][0]" onclick="readyPad(id)"></button><span id="[6][0]"></span></td>
-    <td><button id="btn[6][1]" onclick="readyPad(id)"></button><span id="[6][1]"></span></td>
-    <td><button id="btn[6][2]" onclick="readyPad(id)"></button><span id="[6][2]"></span></td>
-    <td><button id="btn[6][3]" onclick="readyPad(id)"></button><span id="[6][3]"></span></td>
-    <td><button id="btn[6][4]" onclick="readyPad(id)"></button><span id="[6][4]"></span></td>
-    <td><button id="btn[6][5]" onclick="readyPad(id)"></button><span id="[6][5]"></span></td>
-    <td><button id="btn[6][6]" onclick="readyPad(id)"></button><span id="[6][6]"></span></td>
-    <td><button id="btn[6][7]" onclick="readyPad(id)"></button><span id="[6][7]"></span></td>
-    <td><button id="btn[6][8]" onclick="readyPad(id)"></button><span id="[6][8]"></span></td></tr>
+    <tbody class ="sudoku"></tbody>
+<tr><td><button id="btn[6][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][0]"><span id="[6][0]"></span></td>
+    <td><button id="btn[6][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][1]"><span id="[6][1]"></span></td>
+    <td><button id="btn[6][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][2]"><span id="[6][2]"></span></td>
+    <td><button id="btn[6][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][3]"><span id="[6][3]"></span></td>
+    <td><button id="btn[6][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][4]"><span id="[6][4]"></span></td>
+    <td><button id="btn[6][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][5]"><span id="[6][5]"></span></td>
+    <td><button id="btn[6][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][6]"><span id="[6][6]"></span></td>
+    <td><button id="btn[6][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][7]"><span id="[6][7]"></span></td>
+    <td><button id="btn[6][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][8]"><span id="[6][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][9]"><span id="[6][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][10]"><span id="[6][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][11]"><span id="[6][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][12]"><span id="[6][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][13]"><span id="[6][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][14]"><span id="[6][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][15]"><span id="[6][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][16]"><span id="[6][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[6][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[6][17]"><span id="[6][17]"></span></td></tr>
    
-<tr><td><button id="btn[7][0]" onclick="readyPad(id)"></button><span id="[7][0]"></span></td>
-    <td><button id="btn[7][1]" onclick="readyPad(id)"></button><span id="[7][1]"></span></td>
-    <td><button id="btn[7][2]" onclick="readyPad(id)"></button><span id="[7][2]"></span></td>
-    <td><button id="btn[7][3]" onclick="readyPad(id)"></button><span id="[7][3]"></span></td>
-    <td><button id="btn[7][4]" onclick="readyPad(id)"></button><span id="[7][4]"></span></td>
-    <td><button id="btn[7][5]" onclick="readyPad(id)"></button><span id="[7][5]"></span></td>
-    <td><button id="btn[7][6]" onclick="readyPad(id)"></button><span id="[7][6]"></span></td>
-    <td><button id="btn[7][7]" onclick="readyPad(id)"></button><span id="[7][7]"></span></td>
-    <td><button id="btn[7][8]" onclick="readyPad(id)"></button><span id="[7][8]"></span></td></tr>
+<tr><td><button id="btn[7][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][0]"><span id="[7][0]"></span></td>
+    <td><button id="btn[7][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][1]"><span id="[7][1]"></span></td>
+    <td><button id="btn[7][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][2]"><span id="[7][2]"></span></td>
+    <td><button id="btn[7][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][3]"><span id="[7][3]"></span></td>
+    <td><button id="btn[7][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][4]"><span id="[7][4]"></span></td>
+    <td><button id="btn[7][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][5]"><span id="[7][5]"></span></td>
+    <td><button id="btn[7][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][6]"><span id="[7][6]"></span></td>
+    <td><button id="btn[7][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][7]"><span id="[7][7]"></span></td>
+    <td><button id="btn[7][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][8]"><span id="[7][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][9]"><span id="[7][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][10]"><span id="[7][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][11]"><span id="[7][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][12]"><span id="[7][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][13]"><span id="[7][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][14]"><span id="[7][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][15]"><span id="[7][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][16]"><span id="[7][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[7][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[7][17]"><span id="[7][17]"></span></td></tr>
    
-<tr><td><button id="btn[8][0]" onclick="readyPad(id)"></button><span id="[8][0]"></span></td>
-    <td><button id="btn[8][1]" onclick="readyPad(id)"></button><span id="[8][1]"></span></td>
-    <td><button id="btn[8][2]" onclick="readyPad(id)"></button><span id="[8][2]"></span></td>
-    <td><button id="btn[8][3]" onclick="readyPad(id)"></button><span id="[8][3]"></span></td>
-    <td><button id="btn[8][4]" onclick="readyPad(id)"></button><span id="[8][4]"></span></td>
-    <td><button id="btn[8][5]" onclick="readyPad(id)"></button><span id="[8][5]"></span></td>
-    <td><button id="btn[8][6]" onclick="readyPad(id)"></button><span id="[8][6]"></span></td>
-    <td><button id="btn[8][7]" onclick="readyPad(id)"></button><span id="[8][7]"></span></td>
-    <td><button id="btn[8][8]" onclick="readyPad(id)"></button><span id="[8][8]"></span></td></tr>       
+<tr><td><button id="btn[8][0]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][0]"><span id="[8][0]"></span></td>
+    <td><button id="btn[8][1]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][1]"><span id="[8][1]"></span></td>
+    <td><button id="btn[8][2]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][2]"><span id="[8][2]"></span></td>
+    <td><button id="btn[8][3]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][3]"><span id="[8][3]"></span></td>
+    <td><button id="btn[8][4]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][4]"><span id="[8][4]"></span></td>
+    <td><button id="btn[8][5]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][5]"><span id="[8][5]"></span></td>
+    <td><button id="btn[8][6]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][6]"><span id="[8][6]"></span></td>
+    <td><button id="btn[8][7]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][7]"><span id="[8][7]"></span></td>
+    <td><button id="btn[8][8]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][8]"><span id="[8][8]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][9]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][9]"><span id="[8][9]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][10]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][10]"><span id="[8][10]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][11]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][11]"><span id="[8][11]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][12]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][12]"><span id="[8][12]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][13]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][13]"><span id="[8][13]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][14]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][14]"><span id="[8][14]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][15]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][15]"><span id="[8][15]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][16]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][16]"><span id="[8][16]"></span></td>
+    <td class="minesweeper" ><button id="btn[8][17]" onclick="readyPad(id)" onmousedown="flag(event,id)"></button><img src="images/bomb.jpg" class="minesweeper" id="img[8][17]"><span id="[8][17]"></span></td></tr>       
 </table>
     
     <div id= "numberPad">
-        <button onclick="assign(1)">1</button>
-        <button onclick="assign(2)">2</button>
-        <button onclick="assign(3)">3</button>
-        <button onclick="assign(4)">4</button>
-        <button onclick="assign(5)">5</button>
-        <button onclick="assign(6)">6</button>
-        <button onclick="assign(7)">7</button>
-        <button onclick="assign(8)">8</button>
-        <button onclick="assign(9)">9</button>
-        <button onclick="assign(0)">-</button>
+        <button onclick="assign(1)" class ="sudoku">1</button>
+        <button onclick="assign(2)" class ="sudoku">2</button>
+        <button onclick="assign(3)" class ="sudoku">3</button>
+        <button onclick="assign(4)" class ="sudoku">4</button>
+        <button onclick="assign(5)" class ="sudoku">5</button>
+        <button onclick="assign(6)" class ="sudoku">6</button>
+        <button onclick="assign(7)" class ="sudoku">7</button>
+        <button onclick="assign(8)" class ="sudoku">8</button>
+        <button onclick="assign(9)" class ="sudoku">9</button>
+        <button onclick="assign(0)" class ="sudoku">-</button>
     </div>   
-    <button onclick="genRandomBoard()">Generate</button>
-    <button onclick="check()">Check</button>
-    <button onclick="readySolve()">See Solution</button>
+    <button class ="sudoku" onclick="genRandomBoard()">Generate</button>
+    <button class ="sudoku" onclick="check()">Check</button>
+    <button class ="sudoku" onclick="readySolve()">See Solution</button>
+    <button class ="minesweeper" onclick="minesweeper()">try again</button>
     <div id="solution" ></div> 
-    </div> <!-- End of sudoku -->
     
 </body>
 </html>
