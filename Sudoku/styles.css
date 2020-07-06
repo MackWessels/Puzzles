@@ -16,6 +16,7 @@ td {
 table button{
     height: 100%;
     width: 100%;
+	border: none;
 }
 
 #numberPad button{

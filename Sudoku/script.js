@@ -12,6 +12,7 @@ var board = [
 var active = "";
 var key = [];
 var game = "";
+var amtBombs = 25;
 
 function sudoku(){
     console.log("sudoku mode")
@@ -54,7 +55,7 @@ function plantBombs(){
     var bombs = []
     while(bombs.length > 0)
         bombs.pop()
-    while (bombs.length < 30 ){
+    while (bombs.length < amtBombs ){
         var row = Math.floor(Math.random() * 9)
         var col = Math.floor(Math.random() * 18);
         if (board[row][col] != "bomb"){
